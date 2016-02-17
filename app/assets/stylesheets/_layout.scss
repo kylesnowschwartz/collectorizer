@@ -1,0 +1,65 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  @include position(fixed, 0rem 0rem 0rem 0rem);
+  @include display(flex);
+  @include flex-direction(column);
+
+  > header {
+    height: 3.5rem;
+    background: #222;
+    padding: 1rem 3.5rem;
+
+    h1 {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: bold;
+      line-height: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  main {
+    @include flex(1);
+    @include display(flex);
+    @include flex-direction(row);
+    background: #333;
+
+    > section {
+      @include flex(1 0 33%);
+      overflow-y: auto;
+    }
+
+    .collections {
+      @include order(-1);
+    }
+
+    .selection {
+      @include order(0);
+      background: #444;
+
+      &.empty {
+        @include display(flex);
+        @include align-items(center);
+        @include justify-content(center);
+        color: #999;
+        padding: 2rem;
+
+        p {
+          text-align: center;
+          margin: 0;
+        }
+      }
+    }
+
+    .decks {
+      @include order(1);
+    }
+  }
+}
