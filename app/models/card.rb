@@ -1,11 +1,9 @@
 class Card < ActiveRecord::Base
+  belongs_to :user
+  
   validates :name, presence: true
 
   before_create :sanitize_card_name
-
-  def quantity
-    Card.where(name: self.name).count
-  end
 
   private
 

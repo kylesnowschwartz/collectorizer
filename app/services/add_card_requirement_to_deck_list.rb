@@ -1,17 +1,17 @@
 class AddCardRequirementToDeckList
-  def initialize(decklist, card_name, quantity)
+  def initialize(decklist, card_name, quantity_required)
     @decklist = decklist
     @card_name = card_name
-    @quantity = quantity
+    @quantity_required = quantity_required
   end
 
   def call
-    @decklist.card_requirements.create!(card_name: @card_name, quantity: @quantity, owned: amount_owned)
+    @decklist.card_requirements.create!(card_name: @card_name, quantity_required: @quantity_required, quantity_owned: quantity_owned)
   end
 
   private
 
-  def amount_owned
+  def quantity_owned
     Card.where(name: @card_name).count
   end
 end

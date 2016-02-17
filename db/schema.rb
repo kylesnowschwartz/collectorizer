@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217215146) do
+ActiveRecord::Schema.define(version: 20160217224215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "card_requirements", force: :cascade do |t|
     t.integer  "deck_list_id"
-    t.string   "card_name",                null: false
-    t.integer  "quantity",     default: 1, null: false
-    t.integer  "owned",        default: 0, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "card_name",                     null: false
+    t.integer  "quantity_required", default: 1, null: false
+    t.integer  "quantity_owned",    default: 0, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "card_requirements", ["deck_list_id"], name: "index_card_requirements_on_deck_list_id", using: :btree
