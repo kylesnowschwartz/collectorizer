@@ -1,0 +1,35 @@
+.selection {
+  @include display(flex);
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(flex-start);
+  padding: 1rem;
+
+  article {
+    width: 14rem;
+    max-width: 100%;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto 1.5rem;
+    max-width: 100%;
+    height: auto;
+    border: .5rem solid white;
+    border-radius: .75rem;
+    box-shadow: 0 .25rem 1rem black;
+  }
+
+  .cost {
+    .ms {
+      font-size: .75rem;
+      color: black;
+      background: $base-font-color;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      padding: .5em;
+      margin-right: .25em;
+    }
+  }
+}

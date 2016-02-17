@@ -29,7 +29,7 @@ body, html {
     @include flex(1);
     @include display(flex);
     @include flex-direction(row);
-    background: #333;
+    background: $base-background-color;
 
     > section {
       @include flex(1 0 33%);
@@ -42,13 +42,13 @@ body, html {
 
     .selection {
       @include order(0);
-      background: #444;
+      background: $secondary-background-color;
 
       &.empty {
         @include display(flex);
         @include align-items(center);
         @include justify-content(center);
-        color: #999;
+        color: rgba(white, .25);
         padding: 2rem;
 
         p {

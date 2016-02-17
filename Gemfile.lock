@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/fauxparse/mithril-rails.git
+  revision: 928ec367b03150c7162af8cd536040f5f3c4698f
+  specs:
+    mithril_rails (0.0.7)
+      execjs (>= 2.2.2)
+      rails (>= 3.2.0)
+      tilt
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -151,6 +160,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  mithril_rails!
   neat
   pg
   rails (= 4.2.4)
