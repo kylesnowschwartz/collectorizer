@@ -1,0 +1,2 @@
+module CardRequirementsHelper
+end
