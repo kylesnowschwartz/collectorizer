@@ -4,5 +4,10 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  get 'cards/index'
+
+  resource :cards, only: [:index, :show, :new, :create, :destroy]
+
+  resource :deck_lists, only: [:index, :show, :new, :create, :destroy] do
+    resource :card_requirements, only: [:create, :destroy, :update]
+  end
 end
