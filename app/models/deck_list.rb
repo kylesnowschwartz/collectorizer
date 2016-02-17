@@ -1,6 +1,8 @@
 class DeckList < ActiveRecord::Base
   has_many :card_requirements
 
+  validates :title, uniqueness: { scope: :user_id }
+
   def needed_cards
     cards_required = card_requirements.reject { |r| r.met? }
 
@@ -9,7 +11,7 @@ class DeckList < ActiveRecord::Base
 
       quantity_needed = [0, card_requirement.quantity - Card.where(name: card_requirement.card_name).count].max
       
-      { name: card_name, quantity_needed: quantity_needed}
+      { name: card_name, quantity_needed: quantity_needed }
     end
   end
 end
