@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json { render json: current_user.cards }
+      format.json { render json: CardCollection.new(current_user).cards }
     end
   end
 
