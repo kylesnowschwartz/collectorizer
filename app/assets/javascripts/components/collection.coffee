@@ -6,7 +6,7 @@ class Collection
 
   view: ->
     m("ul", { class: "collection card-list" },
-      (@renderCard(card) for card in @groupedCollection())
+      (@renderCard(card) for card in @collection())
     )
 
   renderCard: (card) ->
@@ -22,13 +22,8 @@ class Collection
       "#{card.quantity} × #{card.name}"
     )
 
-  groupedCollection: ->
-    collection = {}
-    for card in @collection() || []
-      unless collection[card.multiverse]
-        collection[card.multiverse] = $.extend(card, quantity: 0)
-      collection[card.multiverse].quantity += 1
-    (card for own multiverse, card of collection)
+  sortedCollection: ->
+    @collection().sort (a, b) -> a.name.localeCompare(b.name)
 
   selected: (card) ->
     @selection()?.multiverse == card.multiverse
