@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Collectorizor</title>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:400,700,400italic" %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="login">
+    <div class="container">
+      <div class="alerts">
+        <%= content_tag(:p, notice, class: :notice) if notice.present? %>
+        <%= content_tag(:p, alert, class: :alert) if notice.present? %>
+      </div>
+      <section>
+        <%= yield %>
+      </section>
+    </div>
+  </body>
+</html>

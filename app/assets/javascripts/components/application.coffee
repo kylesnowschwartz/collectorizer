@@ -5,7 +5,8 @@ class Application
   view: ->
     m("div", { class: "container" },
       m("header",
-        m("h1", "Collectionizer")
+        m("h1", "Collectionizer"),
+        m("a", { href: "/users/sign_out", "data-method": "delete" }, "Log out")
       ),
       m("main",
         m.component(App.Components.Collections, selection: @selection)
