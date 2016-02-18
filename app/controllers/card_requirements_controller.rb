@@ -8,7 +8,7 @@ class CardRequirementsController < ApplicationController
   end
 
   def destroy
-    card_requirement = CardRequirement.find(params[:card_requirement_id])
+    card_requirement = CardRequirement.find(params[:id])
     deck_list = card_requirement.deck_list
 
     RemoveCardRequirementFromDeckList.new(card_requirement).call
@@ -17,7 +17,7 @@ class CardRequirementsController < ApplicationController
   end
 
   def update
-    card_requirement = CardRequirement.find(params[:card_requirement_id])
+    card_requirement = CardRequirement.find(params[:id])
     deck_list = card_requirement.deck_list
 
     quantity_required = params[:quantity_required]
