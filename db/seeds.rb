@@ -1,7 +1,7 @@
 require 'csv'
 
 # You'll need to create a user before running this seedfile
-user = User.first
+user = User.create!(email: kyle.snowschwartz@gmail.com, password: "password")
 
 decklist = CreateDeckList.new("Brago1", user).call
 
@@ -22,5 +22,5 @@ File.foreach("./db/brago_deck_list_1.txt") do |line_item|
 end
 
 ["Plains", "Island", "Mountain", "Swamp", "Forest"].each do |basic_land|
-  20.times { AddCardToCollection.new(basic_land, user).call }
+  10.times { AddCardToCollection.new(basic_land, user).call }
 end
