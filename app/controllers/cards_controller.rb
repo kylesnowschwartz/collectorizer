@@ -18,5 +18,7 @@ class CardsController < ApplicationController
     card = Card.find(params[:id])
 
     RemoveCardFromCollection.new(card, current_user).call
+
+    redirect_to :index
   end
 end
