@@ -5,7 +5,6 @@ class Deck
     @collection = props.collection
 
   view: ->
-    console.log @deck()
     m("ul", { class: "deck card-list" },
       (@renderCard(card) for card in @sortedDeck())
     )

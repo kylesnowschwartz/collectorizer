@@ -31,9 +31,9 @@
 /**
  * Mana cost styles */
 .ms-cost {
-  background-color: #BEB9B2;
+  color: $base-background-color;
   border-radius: 1em;
-  color: #111;
+  background-color: $base-font-color;
   font-size: 0.95em;
   width: 1.3em;
   height: 1.3em;
@@ -553,7 +553,7 @@
   content: "\e619";
 }
 .ms-c:before {
-  content: "\e904";
+  content: "\e606";
 }
 /**
  * Tap/roll symbols */
