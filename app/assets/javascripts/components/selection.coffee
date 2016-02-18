@@ -16,12 +16,16 @@ class Selection
     !@selection()
 
   cardDetails: ->
-    m("article",
+    owned = @quantityInCollection()
+    required = @quantityRequired()
+    klass = "details"
+    klass += if owned < required then " requirements-not-met" else " requirements-met"
+    m("article", { class: klass }
       m("img", src: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{@selection().multiverse}&type=card"),
       m("h2", @selection().name),
       m("p", { class: "cost" }, @cardCost()),
       m("p", @selection().text),
-      m("p", "You have #{@quantityInCollection()}; you need #{@quantityRequired()}")
+      m("p", { class: "requirements" }, "You have #{owned}; you need #{required}")
     )
 
   cardCost: ->
