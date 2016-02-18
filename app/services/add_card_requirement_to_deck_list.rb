@@ -9,17 +9,17 @@ class AddCardRequirementToDeckList
     @deck_list.card_requirements.create!(
       card_name: @card_name, 
       quantity_required: @quantity_required, 
-      quantity_owned: quantity_owned,
-      multiverse: fetch_multiverse
+      multiverse: fetch_multiverse,
+      quantity_owned: quantity_owned
     )
   end
 
-  private
+  # private
 
   def fetch_multiverse
     path = "https://api.deckbrew.com/mtg/cards/"
     
-    card_name = @card_name.downcase.gsub(/[^a-zA-Z\s]/, '').gsub(/[\s]/, '-')
+    card_name = @card_name.downcase.gsub(/[^-a-zA-Z\s]/, '').gsub(/[\s]/, '-')
     
     response = HTTParty.get(path + card_name)
 
@@ -27,6 +27,6 @@ class AddCardRequirementToDeckList
   end
 
   def quantity_owned
-    Card.where(multiverse: @multiverse).count
+    @deck_list.user.cards.where(multiverse: @multiverse).count
   end
 end

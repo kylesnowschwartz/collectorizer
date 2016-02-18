@@ -12,7 +12,7 @@ user = User.first
 decklist = CreateDeckList.new("Brago1", user).call
 
 CSV.foreach("./db/have_list.csv") do |row|
-  AddCardToCollection.new(row[0], user).call
+  AddCardToCollection.new(row[1], user).call
 end
 
 File.foreach("./db/brago_deck_list_1.txt") do |line_item|

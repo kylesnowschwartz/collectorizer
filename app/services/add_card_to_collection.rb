@@ -1,7 +1,8 @@
 class AddCardToCollection
-  def initialize(card_name, user)
+  def initialize(card_name, user, multiverse = nil)
     @card_name = card_name
     @user = user
+    @multiverse = multiverse
   end
 
   def call
@@ -13,18 +14,22 @@ class AddCardToCollection
   private
 
   def fetch_multiverse
-    path = "https://api.deckbrew.com/mtg/cards/"
-    
-    card_name = @card_name.downcase.gsub(/[^a-zA-Z\s]/, '').gsub(/[\s]/, '-')
-    
-    response = HTTParty.get(path + card_name)
+    if @multiverse
+      @multiverse
+    else
+      path = "https://api.deckbrew.com/mtg/cards/"
+      
+      card_name = @card_name.downcase.gsub(/[^-a-zA-Z\s]/, '').gsub(/[\s]/, '-')
+      
+      response = HTTParty.get(path + card_name)
 
-    @multiverse = response["editions"].first["multiverse_id"].to_s
+      @multiverse = response["editions"].first["multiverse_id"].to_s
+    end
   end
 
   def update_decklists
-    @user.decklists.each do |decklist|
-      decklist.card_requirements.cards_with_multiverse(@multiverse).each do |card_requirement|
+    @user.deck_lists.each do |deck_list|
+      deck_list.card_requirements.cards_with_multiverse(@multiverse).each do |card_requirement|
         quantity_owned = card_requirement.quantity_owned
 
         card_requirement.update_attributes!(quantity_owned: quantity_owned + 1)
