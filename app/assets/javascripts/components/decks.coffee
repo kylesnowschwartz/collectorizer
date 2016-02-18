@@ -1,6 +1,9 @@
 class Decks
   constructor: (props = {}) ->
     @selection = props.selection
+    @decks = m.prop([])
+    m.request({ method: "GET", url: "/deck_lists" }).then(@loadDecks)
+
     @deck = m.prop([
       {
         name: "Blackcleave Goblin",
@@ -18,8 +21,27 @@ class Decks
 
   view: ->
     m("section", { class: "decks" },
+      m("header",
+        m("select", { onchange: @selectDeck },
+          (@renderDeck(deck) for deck in @decks())
+        )
+      )
       m.component(App.Components.Deck, { deck: @deck, selection: @selection })
     )
+
+  renderDeck: (deck) ->
+    m("option", { value: deck.id, selected: deck.id == @deckId() }, deck.title)
+
+  selectDeck: (e) ->
+    @deckId(e.target.options[e.target.selectedIndex].value)
+
+  loadDecks: (decks) =>
+    @decks(decks)
+    @deckId(decks[0].id) if decks.length && !@deckId()
+
+  deckId: (value) ->
+    @_deckId = value if value?
+    @_deckId || @decks()[0]?.id
 
 App.Components.Decks =
   controller: (props = {}) ->

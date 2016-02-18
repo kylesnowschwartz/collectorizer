@@ -9,7 +9,7 @@ class DeckListsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render json: DeckLists.find(params[:deck_list_id]).card_requirements }
+      format.json { render json: DeckList.find(params[:id]).card_requirements }
     end
   end
 
