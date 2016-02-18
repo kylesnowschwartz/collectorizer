@@ -6,7 +6,7 @@ class Deck
   view: ->
     console.log @deck()
     m("ul", { class: "deck card-list" },
-      (@renderCard(card) for card in @deck())
+      (@renderCard(card) for card in @sortedDeck())
     )
 
   renderCard: (card) ->
@@ -19,6 +19,9 @@ class Deck
 
   selected: (card) ->
     @selection()?.multiverse == card.multiverse
+
+  sortedDeck: ->
+    @deck().sort (a, b) -> a.name.localeCompare(b.name)
 
 App.Components.Deck =
   controller: (props = {}) ->

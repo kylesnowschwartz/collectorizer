@@ -6,7 +6,7 @@ class Collection
 
   view: ->
     m("ul", { class: "collection card-list" },
-      (@renderCard(card) for card in @collection())
+      (@renderCard(card) for card in @sortedCollection())
     )
 
   renderCard: (card) ->
