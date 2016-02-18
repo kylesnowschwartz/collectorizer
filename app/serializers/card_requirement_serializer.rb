@@ -1,5 +1,9 @@
 class CardRequirementSerializer < ActiveModel::Serializer
-  attributes :card_name, :quantity, :multiverse
+  attributes :name, :quantity, :multiverse
+
+  def name
+    object.card_name
+  end
 
   def quantity
     object.quantity_required
