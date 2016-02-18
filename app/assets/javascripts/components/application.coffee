@@ -1,6 +1,8 @@
 class Application
   constructor: (props = App.Components.Application.properties) ->
     @selection = m.prop(null)
+    @collection = m.prop([])
+    @deck = m.prop([])
 
   view: ->
     m("div", { class: "container" },
@@ -9,9 +11,9 @@ class Application
         m("a", { href: "/users/sign_out", "data-method": "delete" }, "Log out")
       ),
       m("main",
-        m.component(App.Components.Collections, selection: @selection)
-        m.component(App.Components.Decks, selection: @selection)
-        m.component(App.Components.Selection, selection: @selection)
+        m.component(App.Components.Collections, selection: @selection, collection: @collection, deck: @deck)
+        m.component(App.Components.Decks, selection: @selection, collection: @collection, deck: @deck)
+        m.component(App.Components.Selection, selection: @selection, collection: @collection, deck: @deck)
       )
     )
 

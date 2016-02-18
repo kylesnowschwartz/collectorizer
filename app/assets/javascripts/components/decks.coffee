@@ -1,8 +1,9 @@
 class Decks
   constructor: (props = {}) ->
     @selection = props.selection
+    @collection = props.collection
+    @deck = props.deck
     @decks = m.prop([])
-    @deck = m.prop([])
     m.request({ method: "GET", url: "/deck_lists" }).then(@loadDecks)
 
   view: ->

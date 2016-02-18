@@ -2,6 +2,7 @@ class Deck
   constructor: (props = {}) ->
     @deck = props.deck
     @selection = props.selection
+    @collection = props.collection
 
   view: ->
     console.log @deck()
