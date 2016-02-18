@@ -7,28 +7,26 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
-def sanitize_card_name(name)
-  name.gsub(/[^-'a-zA-Z\s]/, '')
-end
+user = User.first
+
+decklist = CreateDeckList.new("Brago1", user).call
 
 CSV.foreach("./db/have_list.csv") do |row|
-  Card.create!(name: row[1])
+  AddCardToCollection.new(row[0], user).call
 end
 
 File.foreach("./db/brago_deck_list_1.txt") do |line_item|
-  brago = DeckList.find_or_create_by(title: "Brago1")
-
   unless line_item == "\n"
     line_item = line_item.chomp
 
-    quantity = line_item.split(" ")[0].to_i
+    quantity_required = line_item.split(" ")[0].to_i
     
-    card_name = sanitize_card_name(line_item.split(" ")[1..-1].join(" "))
-    
-    CardRequirement.create!(card_name: card_name, deck_list_id: brago.id, quantity: quantity )
+    card_name = line_item.split(" ")[1..-1].join(" ")
+
+    AddCardRequirementToDeckList.new(decklist, card_name, quantity_required).call
   end
 end
 
 ["Plains", "Island", "Mountain", "Swamp", "Forest"].each do |basic_land|
-  20.times { Card.create!(name: basic_land) }
+  20.times { AddCardToCollection.new(basic_land, user).call }
 end

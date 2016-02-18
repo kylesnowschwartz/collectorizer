@@ -5,6 +5,6 @@ class CreateDeckList
   end
 
   def call
-    @user.decklists.create!(title: title)
+    @user.deck_lists.create!(title: title)
   end
 end
