@@ -15,7 +15,7 @@ class Selection
 
   cardDetails: ->
     m("article",
-      m("img", src: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{@selection().multiverseid}&type=card"),
+      m("img", src: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{@selection().multiverse}&type=card"),
       m("h2", @selection().name),
       m("p", { class: "cost" }, @cardCost()),
       m("p", @selection().text),

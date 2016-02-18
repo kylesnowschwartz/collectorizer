@@ -1,21 +1,22 @@
 .decks {
   padding: 1rem;
 
-  ul {
+}
+
+.card-list {
+  margin: 0;
+
+  li {
+    @include ellipsis;
+    display: block;
     margin: 0;
+    padding: .25rem .5rem;
+    cursor: pointer;
 
-    li {
-      @include ellipsis;
-      display: block;
-      margin: 0;
-      padding: .25rem .5rem;
-      cursor: pointer;
-
-      &.selected {
-        background-color: $action-color;
-        color: white;
-        border-radius: .25rem;
-      }
+    &.selected {
+      background-color: $action-color;
+      color: white;
+      border-radius: .25rem;
     }
   }
 }

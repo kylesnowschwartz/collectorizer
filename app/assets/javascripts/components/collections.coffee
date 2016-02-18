@@ -3,7 +3,9 @@ class Collections
     @selection = props.selection
 
   view: ->
-    m("section", { class: "collections" })
+    m("section", { class: "collections" },
+      m.component(App.Components.Collection, { selection: @selection })
+    )
 
 App.Components.Collections =
   controller: (props = {}) ->

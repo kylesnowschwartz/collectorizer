@@ -4,7 +4,7 @@ class Deck
     @selection = props.selection
 
   view: ->
-    m("ul", { class: "deck" },
+    m("ul", { class: "deck card-list" },
       (@renderCard(card) for card in @deck())
     )
 
@@ -14,7 +14,7 @@ class Deck
     m("li", { class: klass, onclick: => @selection(card) }, card.name)
 
   selected: (card) ->
-    @selection()?.multiverseid == card.multiverseid
+    @selection()?.multiverse == card.multiverse
 
 App.Components.Deck =
   controller: (props = {}) ->
