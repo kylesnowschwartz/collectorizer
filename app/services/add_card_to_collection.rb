@@ -14,17 +14,13 @@ class AddCardToCollection
   private
 
   def fetch_multiverse
-    if @multiverse
-      @multiverse
-    else
-      path = "https://api.deckbrew.com/mtg/cards/"
-      
-      card_name = @card_name.downcase.gsub(/[^-a-zA-Z\s]/, '').gsub(/[\s]/, '-')
-      
-      response = HTTParty.get(path + card_name)
+    path = "https://api.deckbrew.com/mtg/cards/"
+    
+    card_name = @card_name.downcase.gsub(/[^-a-zA-Z\s]/, '').gsub(/[\s]/, '-')
+    
+    response = HTTParty.get(path + card_name)
 
-      @multiverse = response["editions"].first["multiverse_id"].to_s
-    end
+    @multiverse = response["editions"].find { |edition| edition["multiverse_id"] > 0 }["multiverse_id"]
   end
 
   def update_decklists

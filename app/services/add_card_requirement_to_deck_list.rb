@@ -23,7 +23,7 @@ class AddCardRequirementToDeckList
     
     response = HTTParty.get(path + card_name)
 
-    @multiverse = response["editions"].first["multiverse_id"].to_s
+    @multiverse = response["editions"].find { |edition| edition["multiverse_id"] > 0 }["multiverse_id"]
   end
 
   def quantity_owned
