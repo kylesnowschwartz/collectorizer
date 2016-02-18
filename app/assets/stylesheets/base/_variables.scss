@@ -3,7 +3,7 @@ $base-font-family: "Roboto", $helvetica;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
-$base-font-size: 1em;
+$base-font-size: .875rem;
 
 // Line height
 $base-line-height: 1.5;
@@ -17,21 +17,22 @@ $base-z-index: 0;
 
 // Colors
 $blue: #1565c0;
+$pink: #fa0e6a;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 
 // Font Colors
-$base-font-color: $dark-gray;
-$action-color: $blue;
+$base-font-color: #eee;
+$action-color: $pink;
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: black;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: #fff;
-$secondary-background-color: tint($base-border-color, 75%);
+$base-background-color: #333;
+$secondary-background-color: #444;
 
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);

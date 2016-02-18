@@ -1,9 +1,9 @@
 class CardRequirement < ActiveRecord::Base
   belongs_to :desk_list
 
-  scope :cards_with_name, ->(card_name) { where(card_name: card_name) }
+  scope :cards_with_multiverse, ->(multiverse) { where(multiverse: multiverse) }
 
   def met?
-    Card.where(name: self.card_name).count >= self.quantity_required
+    quantity_owned >= quantity_required
   end
 end
