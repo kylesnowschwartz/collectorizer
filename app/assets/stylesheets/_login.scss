@@ -1,0 +1,45 @@
+body.login {
+  @include display(flex);
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  min-height: 100vh;
+
+  .container {
+    @include display(flex);
+    @include flex-direction(column);
+    position: static;
+    width: 18rem;
+    height: auto;
+    background: $secondary-background-color;
+    box-shadow: 0 .5rem 1rem black;
+    padding: 1rem;
+
+    h2 {
+      @include order(-1);
+      margin: -1rem -1rem 1rem;
+      padding: 1rem;
+      background: #222;
+      color: white;
+      line-height: 1.5rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      font-weight: normal;
+      margin-bottom: $small-spacing;
+    }
+
+    input {
+      color: white;
+    }
+
+    [type="submit"] {
+      display: block;
+      width: 100%;
+      margin-bottom: $small-spacing;
+    }
+  }
+}

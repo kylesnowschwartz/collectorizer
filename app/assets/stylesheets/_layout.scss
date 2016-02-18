@@ -5,12 +5,19 @@ body, html {
   -webkit-font-smoothing: antialiased;
 }
 
+body {
+  background: $base-background-color;
+}
+
 .container {
   @include position(fixed, 0rem 0rem 0rem 0rem);
   @include display(flex);
   @include flex-direction(column);
 
   > header {
+    @include display(flex);
+    @include flex-direction(row);
+    @include justify-content(space-between);
     height: 3.5rem;
     background: #222;
     padding: 1rem 3.5rem;
