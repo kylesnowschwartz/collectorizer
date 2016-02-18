@@ -9,6 +9,7 @@ class Decks
   view: ->
     m("section", { class: "decks" },
       m("header",
+        m("h3", "Select a deck"),
         m("select", { onchange: @selectDeck },
           (@renderDeck(deck) for deck in @decks())
         )

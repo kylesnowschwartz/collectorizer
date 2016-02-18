@@ -20,17 +20,50 @@
     box-shadow: 0 .25rem 1rem black;
   }
 
-  .cost {
-    .ms {
-      font-size: .75rem;
-      color: black;
-      background: $base-font-color;
-      border-radius: 50%;
-      width: 2em;
-      height: 2em;
-      padding: .5em;
-      margin-right: .25em;
-      text-align: center;
+  .ms {
+    font-size: .5rem;
+    border-radius: 1em;
+    width: 2em;
+    height: 2em;
+    padding: .5em;
+    margin-right: .25em;
+    text-align: center;
+  }
+
+  .ms-cost.ms-wp,
+  .ms-cost.ms-up,
+  .ms-cost.ms-bp,
+  .ms-cost.ms-rp,
+  .ms-cost.ms-gp,
+  .ms-cost.ms-wu,
+  .ms-cost.ms-wb,
+  .ms-cost.ms-ub,
+  .ms-cost.ms-ur,
+  .ms-cost.ms-br,
+  .ms-cost.ms-bg,
+  .ms-cost.ms-rw,
+  .ms-cost.ms-rg,
+  .ms-cost.ms-gw,
+  .ms-cost.ms-gu {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: .25em;
     }
+    &::after {
+      position: absolute;
+      bottom: 0;
+      right: .25em;
+    }
+  }
+
+  .requirements-met .requirements {
+    color: $green;
+  }
+
+  .requirements-not-met .requirements {
+    color: $red;
   }
 }

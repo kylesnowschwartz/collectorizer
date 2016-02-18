@@ -5,6 +5,9 @@ class Collections
 
   view: ->
     m("section", { class: "collections" },
+      m("header",
+        m("h3", "My collection")
+      ),
       m.component(App.Components.Collection, { selection: @selection, collection: @collection })
     )
 
