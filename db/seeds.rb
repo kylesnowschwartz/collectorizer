@@ -1,7 +1,7 @@
 require 'csv'
 
 # You'll need to create a user before running this seedfile
-user = User.create!(email: kyle.snowschwartz@gmail.com, password: "password")
+user = User.create!(email: "kyle.snowschwartz@gmail.com", password: "password")
 
 decklist = CreateDeckList.new("Brago1", user).call
 
