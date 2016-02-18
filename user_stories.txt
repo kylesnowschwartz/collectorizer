@@ -1,0 +1,49 @@
+user stories
+
+< as a user, I would like to ____ so that I may ____ >
+
+MVP
+as a user, I would like to view my collection, so that I may see cards I already own
+
+as a user, I would like to save a card to my collection, so that I may easily keep track of the cards I own
+
+as a user, I would like to remove a card from a collection, in the event that I've traded or sold it
+
+as a user, I would like to submit a decklist to my collection, so that I may keep track of my desired/owned decks and their associated card
+
+as a user, I would like to be able to remove a decklist
+
+as a user, I would like to be able to update a decklist's card requirements
+
+as a user, I would like to be able to add card requirements to a decklist
+
+as a user, I would like to be able to remove card requirements from a decklist
+
+as a user, I would like to compare my collection to a deck, so that I can easily see which cards I already own and which I need to find in order to the complete the deck
+
+NOT MVP
+
+as a user, I would like to view my collection sorted by price, so that I may see which cards are worth the most
+
+as a user, I would like to view my collection sorted by quantity, so that I may see which cards I own duplicates of
+
+as a user, I would like to view my collection sorted by color, so that I may see which cards I own of a certain color
+
+as a user, I would like to search for a card in my collection, so that I may see if i own a particular card
+
+as a user I would like to search for a card from a list of all printed cards, so that I may easily add it to a collection or deck
+
+as as user, I would like to see the current value of a given card, so that I may know how much a card is worth before trading
+
+as a user, I would like to see the total price of a given decklist, so that I may know how much it would cost to aquire that deck
+
+resources:
+
+pucatrade
+
+edhrec
+
+deckbrew -> https://api.deckbrew.com/mtg/cards/recurring-nightmare
+         -> https://api.deckbrew.com/mtg/cards/typeahead?q=sele
+
+mtgjson
