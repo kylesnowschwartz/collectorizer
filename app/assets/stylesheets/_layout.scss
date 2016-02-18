@@ -40,7 +40,29 @@ body {
 
     > section {
       @include flex(1 0 33%);
-      overflow-y: auto;
+      @include display(flex);
+      @include flex-direction(column);
+
+      header {
+        @include flex(0 0);
+        padding: 1rem;
+
+        h3 {
+          margin: 0 .25rem;
+          font-size: 1rem;
+          font-weight: bold;
+
+          &:not(:last-child) {
+            margin-bottom: $small-spacing;
+          }
+        }
+      }
+
+      .card-list {
+        @include flex(1);
+        padding: 1rem;
+        overflow-y: auto;
+      }
     }
 
     .collections {
@@ -50,9 +72,10 @@ body {
     .selection {
       @include order(0);
       background: $secondary-background-color;
+      padding: 1rem;
+      overflow-y: auto;
 
       &.empty {
-        @include display(flex);
         @include align-items(center);
         @include justify-content(center);
         color: rgba(white, .25);

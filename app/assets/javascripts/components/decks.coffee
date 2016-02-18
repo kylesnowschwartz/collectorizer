@@ -1,27 +1,15 @@
 class Decks
   constructor: (props = {}) ->
     @selection = props.selection
+    @collection = props.collection
+    @deck = props.deck
     @decks = m.prop([])
     m.request({ method: "GET", url: "/deck_lists" }).then(@loadDecks)
-
-    @deck = m.prop([
-      {
-        name: "Blackcleave Goblin",
-        multiverse: 194297,
-        text: "Haste Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.)",
-        cost: "{3}{B}"
-      },
-      {
-        name: "Bloodbond Vampire",
-        multiverse: 401826,
-        text: "Whenever you gain life, put a +1/+1 counter on Bloodbond Vampire.",
-        cost: "{2}{B}{B}"
-      }
-    ])
 
   view: ->
     m("section", { class: "decks" },
       m("header",
+        m("h3", "Select a deck"),
         m("select", { onchange: @selectDeck },
           (@renderDeck(deck) for deck in @decks())
         )
@@ -30,18 +18,22 @@ class Decks
     )
 
   renderDeck: (deck) ->
-    m("option", { value: deck.id, selected: deck.id == @deckId() }, deck.title)
+    m("option", { value: deck.id }, deck.title)
 
-  selectDeck: (e) ->
-    @deckId(e.target.options[e.target.selectedIndex].value)
+  selectDeck: (e) =>
+    id = e.target.options[e.target.selectedIndex].value
+    @loadDeck(id)
 
   loadDecks: (decks) =>
     @decks(decks)
-    @deckId(decks[0].id) if decks.length && !@deckId()
+    @loadDeck(decks[0].id)
 
-  deckId: (value) ->
-    @_deckId = value if value?
-    @_deckId || @decks()[0]?.id
+  loadDeck: (id) ->
+    if id
+      m.request({ method: "GET", url: "/deck_lists/#{id}" })
+        .then(@deck)
+    else
+      @deck([])
 
 App.Components.Decks =
   controller: (props = {}) ->

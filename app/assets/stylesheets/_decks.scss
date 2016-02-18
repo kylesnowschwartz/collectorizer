@@ -1,5 +1,25 @@
 .decks {
   padding: 1rem;
+  @include display(flex);
+  @include flex-direction(column);
+
+  header {
+    padding: 1rem;
+
+    select {
+      display: block;
+      margin: 0;
+      width: 100%;
+      padding: .25rem;
+      font-size: 1rem;
+    }
+  }
+
+  .card-list {
+    @include flex(1);
+    padding: 1rem;
+    overflow-y: auto;
+  }
 }
 
 .card-list {

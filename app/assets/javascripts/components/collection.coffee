@@ -1,12 +1,12 @@
 class Collection
   constructor: (props = {}) ->
     @selection = props.selection
-    @collection = m.prop([])
+    @collection = props.collection
     m.request({ method: "GET", url: "/cards" }).then(@collection)
 
   view: ->
     m("ul", { class: "collection card-list" },
-      (@renderCard(card) for card in @collection())
+      (@renderCard(card) for card in @sortedCollection())
     )
 
   renderCard: (card) ->
