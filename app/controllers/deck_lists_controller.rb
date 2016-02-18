@@ -13,9 +13,6 @@ class DeckListsController < ApplicationController
     end
   end
 
-  def new
-  end
-
   def create
     CreateDeckList.new(params[:title], current_user).call
 
