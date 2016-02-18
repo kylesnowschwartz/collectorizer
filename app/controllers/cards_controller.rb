@@ -8,14 +8,10 @@ class CardsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def new
-  end
-
   def create
     AddCardToCollection.new(params[:card_name], current_user).call
+
+    redirect_to :index
   end
 
   def destroy
