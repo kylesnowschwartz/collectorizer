@@ -4,7 +4,7 @@ class Deck
     @selection = props.selection
 
   view: ->
-    m("ul", { class: "decks" },
+    m("ul", { class: "deck" },
       (@renderCard(card) for card in @deck())
     )
 
