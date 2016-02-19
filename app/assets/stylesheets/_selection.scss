@@ -59,11 +59,13 @@
     }
   }
 
-  .requirements-met .requirements {
+  .requirements-met .requirements,
+  .requirements-met .needed {
     color: $green;
   }
 
-  .requirements-not-met .requirements {
+  .requirements-not-met .requirements,
+  .requirements-not-met .needed {
     color: $red;
   }
 

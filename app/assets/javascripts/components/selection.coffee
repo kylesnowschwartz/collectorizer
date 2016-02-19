@@ -27,8 +27,10 @@ class Selection
       m("h2", @selection().name),
       m("p", { class: "cost", innerHTML: @renderIcons(details.cost) }),
       m("p", m.trust(@renderIcons(details.text))),
-      m("p", { class: "requirements" }, "You have #{owned}; you need #{required}"),
-      m("input", { type: "number", min: 0, onchange: m.withAttr("value", @changeQuantity), value: owned })
+      m("label", { class: "requirements"}, "You have:"),
+      m("input", { type: "number", min: 0, onchange: m.withAttr("value", @changeQuantity), value: owned }),
+      m("p", { class: "needed" }, "You need #{required - owned} more for this deck") if required > owned,
+      m("p", { class: "needed" }, "You need #{required} for this deck") unless required > owned,
     )
 
   renderIcons: (text) ->
