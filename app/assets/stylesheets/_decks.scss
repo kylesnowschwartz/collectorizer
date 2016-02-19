@@ -16,6 +16,7 @@
     .filters {
       @include display(flex);
       @include flex-direction(row);
+      margin: 0 -1rem;
 
       input { display: none; }
 

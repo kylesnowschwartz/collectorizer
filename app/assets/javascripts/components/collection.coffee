@@ -2,7 +2,8 @@ class Collection
   constructor: (props = {}) ->
     @selection = props.selection
     @collection = props.collection
-    m.request({ method: "GET", url: "/cards" }).then(@collection)
+    m.request({ method: "GET", url: "/cards" })
+      .then (cards) => @collection(new App.Models.Collection(cards))
 
   view: ->
     m("ul", { class: "collection card-list" },

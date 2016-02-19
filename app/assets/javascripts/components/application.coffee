@@ -1,8 +1,8 @@
 class Application
   constructor: (props = App.Components.Application.properties) ->
     @selection = m.prop(null)
-    @collection = m.prop([])
-    @deck = m.prop([])
+    @collection = m.prop(new App.Models.Collection)
+    @deck = m.prop(new App.Models.Collection)
 
   view: ->
     m("div", { class: "container" },

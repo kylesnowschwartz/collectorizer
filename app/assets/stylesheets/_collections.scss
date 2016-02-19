@@ -1,2 +1,24 @@
 .collections {
+  header {
+    form {
+      @include display(flex);
+      @include flex-direction(row);
+      @include align-items(stretch);
+
+      input, button {
+        margin: 0;
+      }
+
+      input[type="text"] {
+        @include flex(1);
+        margin-right: $small-spacing;
+        background: #f2f2f2;
+        color: #222;
+
+        &:disabled {
+          color: #ccc;
+        }
+      }
+    }
+  }
 }

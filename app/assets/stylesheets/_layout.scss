@@ -19,8 +19,8 @@ body {
     @include flex-direction(row);
     @include justify-content(space-between);
     height: 3.5rem;
-    background: #222;
-    padding: 1rem 3.5rem;
+    background: #111;
+    padding: 1rem;
 
     h1 {
       color: white;
@@ -46,6 +46,7 @@ body {
       header {
         @include flex(0 0);
         padding: 1rem;
+        background: #222;
 
         h3 {
           margin: 0 .25rem;

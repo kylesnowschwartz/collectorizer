@@ -7,12 +7,10 @@ class Deck
 
     @filters =
       all: (card) -> true
-      owned: (card) =>
-        return true for owned in @collection() when owned.multiverse == card.multiverse
-        false
+      acquired: (card) =>
+        @collection().quantity(card.multiverse) >= @deck().quantity(card.multiverse)
       missing: (card) =>
-        return false for owned in @collection() when owned.multiverse == card.multiverse
-        true
+        @collection().quantity(card.multiverse) < @deck().quantity(card.multiverse)
 
   view: ->
     m("ul", { class: "deck card-list" },
@@ -24,7 +22,7 @@ class Deck
     klass += " selected" if @selected(card)
     m("li",
       { class: klass, onclick: => @selection(card) },
-      "#{card.quantity} × #{card.name}"
+      "#{@count(card)} × #{card.name}"
     )
 
   selected: (card) ->
@@ -33,6 +31,14 @@ class Deck
   sortedDeck: ->
     (card for card in @deck() when @filters[@filter()](card))
       .sort (a, b) -> a.name.localeCompare(b.name)
+
+  count: (card) ->
+    quantity = card.quantity
+    owned = Math.min(quantity, @collection().quantity(card.multiverse))
+    switch @filter()
+      when "acquired" then owned
+      when "missing" then quantity - owned
+      else quantity
 
 App.Components.Deck =
   controller: (props = {}) ->

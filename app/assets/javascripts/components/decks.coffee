@@ -15,7 +15,7 @@ class Decks
           (@renderDeck(deck) for deck in @decks())
         ),
         m("div", { class: "filters", onchange: @filterChanged },
-          (@renderFilter(filter) for filter in ["all", "owned", "missing"])
+          (@renderFilter(filter) for filter in ["all", "acquired", "missing"])
         )
       )
       m.component(App.Components.Deck, { deck: @deck, selection: @selection, filter: @filter, collection: @collection })
@@ -44,9 +44,9 @@ class Decks
   loadDeck: (id) ->
     if id
       m.request({ method: "GET", url: "/deck_lists/#{id}" })
-        .then(@deck)
+        .then (cards) => @deck(new App.Models.Collection(cards))
     else
-      @deck([])
+      @deck(new App.Models.Collection)
 
 App.Components.Decks =
   controller: (props = {}) ->
