@@ -4,6 +4,7 @@
 #= require mithril_ujs
 
 #= require_self
+#= require models
 #= require components
 
 @App = {}
