@@ -1,0 +1,100 @@
+1	Ajani, Mentor of Heroes
+1	Akroma's Memorial
+1	Amulet of Vigor
+1	Ancient Ziggurat
+1	Athreos, God of Passage
+1	Avacyn, Angel of Hope
+1	Belbe's Portal
+1	Bident of Thassa
+1	Blood Crypt
+1	Bow of Nylea
+1	Breeding Pool
+1	Cavern of Souls
+1	Chromatic Lantern
+1	Command Tower
+1	Cyclonic Rift
+1	Darksteel Ingot
+1	Deus of Calamity
+1	Divinity of Pride
+1	Dominus of Fealty
+1	Eidolon of Blossoms
+1	Elixir of Immortality
+1	Elspeth, Sun's Champion
+1	Enchantress's Presence
+1	Ephara, God of the Polis
+1	Erebos, God of the Dead
+1	Exotic Orchard
+1	Fist of Suns
+1	Garruk, Apex Predator
+1	Garruk, Caller of Beasts
+1	Ghastlord of Fugue
+1	Godless Shrine
+1	Hallowed Fountain
+1	Heliod, God of the Sun
+1	In Garruk's Wake
+1	Iroas, God of Victory
+1	Jace, Architect of Thought
+1	Karametra, God of Harvests
+1	Karn Liberated
+1	Keranos, God of Storms
+1	Kiora, the Crashing Wave
+1	Kruphix, God of Horizons
+1	Leyline of Anticipation
+1	Leyline of Sanctity
+1	Mana Confluence
+1	Mana Flare
+1	Mesa Enchantress
+1	Mirari's Wake
+1	Mogis, God of Slaughter
+1	Nicol Bolas, Planeswalker
+1	Nobilis of War
+1	Nykthos, Shrine to Nyx
+1	Nylea, God of the Hunt
+1	Opal Palace
+1	Open the Vaults
+1	Overbeing of Myth
+1	Overgrown Tomb
+1	Oversoul of Dusk
+1	Patriarch's Bidding
+1	Pharika, God of Affliction
+1	Phenax, God of Deception
+1	Pillar of the Paruns
+1	Prismatic Omen
+1	Purphoros, God of the Forge
+1	Quicksilver Amulet
+1	Ral Zarek
+1	Reflecting Pool
+1	Reliquary Tower
+1	Replenish
+1	Reya Dawnbringer
+1	Rupture Spire
+1	Sacred Foundry
+1	Sarkhan Unbroken
+1	Seedborn Muse
+1	Sensei's Divining Top
+1	Sigil of the Empty Throne
+1	Sol Ring
+1	Sorin, Lord of Innistrad
+1	Steam Vents
+1	Stomping Ground
+1	Tamiyo, the Moon Sage
+1	Temple Garden
+1	Temple of Abandon
+1	Temple of Deceit
+1	Temple of Enlightenment
+1	Temple of Epiphany
+1	Temple of Malady
+1	Temple of Malice
+1	Temple of Mystery
+1	Temple of Plenty
+1	Temple of Silence
+1	Temple of the False God
+1	Temple of Triumph
+1	Thassa, God of the Sea
+1	Vault of the Archangel
+1	Verduran Enchantress
+1	Watery Grave
+1	Whip of Erebos
+1	Xenagos, God of Revels
+1	Xenagos, the Reveler
+1 Progenitus
