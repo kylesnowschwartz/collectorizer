@@ -22,9 +22,9 @@ class AddCardRequirementToDeckList
     file = File.read("db/lookup.json")
     card_hash = JSON.parse(file)
 
-    serilized_name = ActiveSupport::Inflector.transliterate(@card_name).downcase.gsub(/[^a-z0-9\s]/i, '')
+    sanitized_name = ActiveSupport::Inflector.transliterate(@card_name).downcase.gsub(/[^a-z0-9\s]/i, '')
 
-    card = card_hash[serilized_name]
+    card = card_hash[sanitized_name]
     @card_name = card["name"]
     @multiverse = card["multiverse_id"]
   end

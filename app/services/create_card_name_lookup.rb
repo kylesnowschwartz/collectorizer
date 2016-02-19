@@ -22,10 +22,10 @@ class CreateCardNameLookup
     hash.each_pair do |set, data|
       data["cards"].each do |card|
         actual_name = card["name"]
-        serilized_name = ActiveSupport::Inflector.transliterate(actual_name).downcase.gsub(/[^a-z0-9\s]/i, '')
+        sanitized_name = ActiveSupport::Inflector.transliterate(actual_name).downcase.gsub(/[^a-z0-9\s]/i, '')
         multiverse = card["multiverseid"]
 
-        lookup_hash[serilized_name] = {"name" => actual_name, "multiverse_id" => multiverse}
+        lookup_hash[sanitized_name] = {"name" => actual_name, "multiverse_id" => multiverse}
       end
     end
 
