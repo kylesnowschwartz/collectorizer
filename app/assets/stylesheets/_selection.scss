@@ -66,4 +66,9 @@
   .requirements-not-met .requirements {
     color: $red;
   }
+
+  input[type="number"] {
+    display: block;
+    background: #f2f2f2;
+  }
 }
