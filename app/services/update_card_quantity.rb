@@ -25,7 +25,7 @@ class UpdateCardQuantity
   end
 
   def quantity
-    params[:quantity].to_i
+    [params[:quantity].to_i, 0].max
   end
 
   def add_card
