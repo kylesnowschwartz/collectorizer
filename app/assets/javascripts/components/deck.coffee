@@ -3,6 +3,16 @@ class Deck
     @deck = props.deck
     @selection = props.selection
     @collection = props.collection
+    @filter = props.filter
+
+    @filters =
+      all: (card) -> true
+      owned: (card) =>
+        return true for owned in @collection() when owned.multiverse == card.multiverse
+        false
+      missing: (card) =>
+        return false for owned in @collection() when owned.multiverse == card.multiverse
+        true
 
   view: ->
     m("ul", { class: "deck card-list" },
@@ -21,7 +31,8 @@ class Deck
     @selection()?.multiverse == card.multiverse
 
   sortedDeck: ->
-    @deck().sort (a, b) -> a.name.localeCompare(b.name)
+    (card for card in @deck() when @filters[@filter()](card))
+      .sort (a, b) -> a.name.localeCompare(b.name)
 
 App.Components.Deck =
   controller: (props = {}) ->

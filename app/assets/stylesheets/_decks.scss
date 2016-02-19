@@ -3,7 +3,7 @@
   @include flex-direction(column);
 
   header {
-    padding: 1rem;
+    padding-bottom: 0 !important;
 
     select {
       display: block;
@@ -11,6 +11,29 @@
       width: 100%;
       padding: .25rem;
       font-size: 1rem;
+    }
+
+    .filters {
+      @include display(flex);
+      @include flex-direction(row);
+
+      input { display: none; }
+
+      label {
+        @include ellipsis;
+        @include flex(1 0 30%);
+        margin: 0;
+        text-transform: capitalize;
+        text-align: center;
+        padding: $small-spacing 0;
+        border-bottom: 1px solid white;
+        opacity: .25;
+        cursor: pointer;
+      }
+
+      :checked + label {
+        opacity: 1;
+      }
     }
   }
 
