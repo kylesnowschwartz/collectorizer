@@ -14,6 +14,12 @@ class CardsController < ApplicationController
     redirect_to cards_path
   end
 
+  def update
+    UpdateCardQuantity.new(card_params, current_user).call
+
+    render json: CardCollection.new(current_user).cards
+  end
+
   def destroy
     card = Card.find(params[:id])
 
@@ -25,6 +31,6 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:name)
+    params.require(:card).permit(:name, :multiverse, :quantity)
   end
 end

@@ -27,7 +27,8 @@ class Selection
       m("h2", @selection().name),
       m("p", { class: "cost", innerHTML: @renderIcons(details.cost) }),
       m("p", m.trust(@renderIcons(details.text))),
-      m("p", { class: "requirements" }, "You have #{owned}; you need #{required}")
+      m("p", { class: "requirements" }, "You have #{owned}; you need #{required}"),
+      m("input", { type: "number", min: 0, onchange: m.withAttr("value", @changeQuantity), value: owned })
     )
 
   renderIcons: (text) ->
@@ -38,11 +39,29 @@ class Selection
       .replace /\n/g, "<br>"
 
   quantityInCollection: (card = @selection(), collection = @collection()) ->
-    return owned.quantity for owned in collection when owned.multiverse == card.multiverse
-    0
+    collection.quantity(card.multiverse)
 
   quantityRequired: (card = @selection()) ->
     @quantityInCollection(card, @deck())
+
+  changeQuantity: (quantity) =>
+    @collection().setQuantity(@selection(), quantity)
+    clearTimeout(@_updateQuantityTimer)
+    @_updateQuantityTimer = setTimeout(@updateQuantity, 500)
+
+  updateQuantity: =>
+    console.log("updateQuantity", "/cards/#{@selection().multiverse}")
+    @_updateRequest ?= m.prop()
+    @_updateRequest()?.abort()
+
+    m.request
+      method: "PUT"
+      url: "/cards/#{@selection().multiverse}/"
+      data:
+        card: $.extend({}, @selection(), { quantity: @quantityInCollection() })
+      config: @_updateRequest
+    .then (cards) =>
+      @collection(new App.Models.Collection(cards))
 
   cardDetails: (id) ->
     return @_cache[id] if @_cache[id]
