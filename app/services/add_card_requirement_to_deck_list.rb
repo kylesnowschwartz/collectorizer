@@ -6,24 +6,27 @@ class AddCardRequirementToDeckList
   end
 
   def call
+    fetch_multiverse_and_normalize_name
+
     @deck_list.card_requirements.create!(
-      card_name: @card_name, 
-      quantity_required: @quantity_required, 
-      multiverse: fetch_multiverse,
+      card_name: @card_name,
+      quantity_required: @quantity_required,
+      multiverse: @multiverse,
       quantity_owned: quantity_owned
     )
   end
 
-  # private
+  private
 
-  def fetch_multiverse
-    path = "https://api.deckbrew.com/mtg/cards/"
-    
-    card_name = @card_name.downcase.gsub(/[^-a-zA-Z\s]/, '').gsub(/[\s]/, '-')
-    
-    response = HTTParty.get(path + card_name)
+  def fetch_multiverse_and_normalize_name
+    file = File.read("db/lookup.json")
+    card_hash = JSON.parse(file)
 
-    @multiverse = response["editions"].find { |edition| edition["multiverse_id"] > 0 }["multiverse_id"]
+    sanitized_name = ActiveSupport::Inflector.transliterate(@card_name).downcase.gsub(/[^a-z0-9\s]/i, '')
+
+    card = card_hash[sanitized_name]
+    @card_name = card["name"]
+    @multiverse = card["multiverse_id"]
   end
 
   def quantity_owned

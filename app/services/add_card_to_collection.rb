@@ -6,21 +6,23 @@ class AddCardToCollection
   end
 
   def call
-    @user.cards.create!(name: @card_name, multiverse: fetch_multiverse)
+    fetch_multiverse_and_normalize_name
+    @user.cards.create!(name: @card_name, multiverse: @multiverse)
 
     update_decklists
   end
 
   private
 
-  def fetch_multiverse
-    path = "https://api.deckbrew.com/mtg/cards/"
-    
-    card_name = @card_name.downcase.gsub(/[^-a-zA-Z\s]/, '').gsub(/[\s]/, '-')
-    
-    response = HTTParty.get(path + card_name)
+  def fetch_multiverse_and_normalize_name
+    file = File.read("db/lookup.json")
+    card_hash = JSON.parse(file)
 
-    @multiverse = response["editions"].find { |edition| edition["multiverse_id"] > 0 }["multiverse_id"]
+    sanitized_name = ActiveSupport::Inflector.transliterate(@card_name).downcase.gsub(/[^a-z0-9\s]/i, '')
+
+    card = card_hash[sanitized_name]
+    @card_name = card["name"]
+    @multiverse = card["multiverse_id"]
   end
 
   def update_decklists
