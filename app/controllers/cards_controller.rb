@@ -9,9 +9,9 @@ class CardsController < ApplicationController
   end
 
   def create
-    AddCardToCollection.new(params[:card_name], current_user).call
+    AddCardToCollection.new(card_params[:name], current_user).call
 
-    redirect_to :index
+    redirect_to cards_path
   end
 
   def destroy
@@ -19,6 +19,12 @@ class CardsController < ApplicationController
 
     RemoveCardFromCollection.new(card, current_user).call
 
-    redirect_to :index
+    redirect_to cards_path
+  end
+
+  private
+
+  def card_params
+    params.require(:card).permit(:name)
   end
 end
