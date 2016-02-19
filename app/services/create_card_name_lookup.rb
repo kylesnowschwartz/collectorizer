@@ -25,7 +25,9 @@ class CreateCardNameLookup
         sanitized_name = ActiveSupport::Inflector.transliterate(actual_name).downcase.gsub(/[^a-z0-9\s]/i, '')
         multiverse = card["multiverseid"]
 
-        lookup_hash[sanitized_name] = {"name" => actual_name, "multiverse_id" => multiverse}
+        if !lookup_hash[sanitized_name] && multiverse && multiverse != 0
+          lookup_hash[sanitized_name] = {"name" => actual_name, "multiverse_id" => multiverse}
+        end
       end
     end
 
