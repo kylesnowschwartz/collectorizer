@@ -4,6 +4,7 @@ class Decks
     @collection = props.collection
     @deck = props.deck
     @decks = m.prop([])
+    @filter = m.prop("all")
     m.request({ method: "GET", url: "/deck_lists" }).then(@loadDecks)
 
   view: ->
@@ -12,13 +13,25 @@ class Decks
         m("h3", "Select a deck"),
         m("select", { onchange: @selectDeck },
           (@renderDeck(deck) for deck in @decks())
+        ),
+        m("div", { class: "filters", onchange: @filterChanged },
+          (@renderFilter(filter) for filter in ["all", "owned", "missing"])
         )
       )
-      m.component(App.Components.Deck, { deck: @deck, selection: @selection })
+      m.component(App.Components.Deck, { deck: @deck, selection: @selection, filter: @filter, collection: @collection })
     )
 
   renderDeck: (deck) ->
     m("option", { value: deck.id }, deck.title)
+
+  renderFilter: (filter) ->
+    [
+      m("input", { type: "radio", name: "filter", value: filter, checked: @filter() == filter, id: "filter_#{filter}" }),
+      m("label", { for: "filter_#{filter}" }, filter)
+    ]
+
+  filterChanged: (e) =>
+    @filter(e.target.value)
 
   selectDeck: (e) =>
     id = e.target.options[e.target.selectedIndex].value
