@@ -92,3 +92,24 @@ select {
     outline-style: none;
   }
 }
+
+.dialog {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 40px;
+}
+
+.dialogContent {
+  background: #fff;
+  padding: 40px;
+  width: 100%;
+  height: 100%;
+  
+  h2 {
+    margin-top: 0;
+  }
+}
