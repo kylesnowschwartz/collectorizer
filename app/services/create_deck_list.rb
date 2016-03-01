@@ -6,4 +6,4 @@ class CreateDeckList
 
   def call
     @user.deck_lists.create!(title: @title)
-  endend
+  end
