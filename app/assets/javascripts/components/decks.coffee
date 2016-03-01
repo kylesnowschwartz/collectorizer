@@ -25,12 +25,14 @@ class Decks
 
   addNewDeck: =>
     @deckTitle ?= m.prop("")
+    @deckList ?= m.prop("")
     @dialog(
       m("div", { id: "dialogContainer" },
         m(".dialog", m(".dialogContent", [
           m("h2", "Add deck")
           m("form", { onsubmit: @submitNewDeck },
-            m("textarea", { oninput: m.withAttr("value", @deckTitle), type: "text", id: "deckTitle", placeholder: "Add a deck...", value: @deckTitle() }),
+            m("textarea", { oninput: m.withAttr("value", @deckTitle), type: "text", id: "deckTitle", placeholder: "Deck Title", value: @deckTitle() }),
+            m("textarea", { rows: 15, cols: 40, oninput: m.withAttr("value", @deckList), type: "text", id: "deckList", placeholder: "1 Brago, King Eternal\n1 Birds of Paradise\n4 Island\netc...", value: @deckList() }),
             m("button", { type: "submit" }, "Add")
           )
           m("a", {
@@ -44,16 +46,17 @@ class Decks
 
   submitNewDeck: (e) =>
     e.preventDefault()
-    console.log("WHOOHOOOOO")
     m.request
       method: "POST"
-      url: "/decks"
+      url: "/deck_lists"
       data:
-        deck:
-          title: @deckTitle()
+        title: @deckTitle()
+        list: @deckList()
     .then (cards) =>
       @deck(new App.Models.Collection(cards))
       @deckTitle("")
+      @deckList("")
+      @dialog(false)
 
   renderDeck: (deck) ->
     m("option", { value: deck.id }, deck.title)

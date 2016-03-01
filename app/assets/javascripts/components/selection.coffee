@@ -67,7 +67,7 @@ class Selection
 
   cardDetails: (id) ->
     return @_cache[id] if @_cache[id]
-    m.request({ method: "GET", url: "https://api.deckbrew.com/mtg/cards/?multiverseid=#{id}" })
+    m.request({ method: "GET", url: "https://api.deckbrew.com/mtg/cards?multiverseid=#{id}" })
       .then (data) =>
         m.startComputation()
         @_cache[id] = data[0] if data.length
