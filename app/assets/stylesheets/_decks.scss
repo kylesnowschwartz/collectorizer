@@ -38,6 +38,14 @@
     }
   }
 
+  .delete-link {
+    display: block;
+    margin-left: 10px;
+    width: 100%;
+    padding: .25rem;
+    font-size: .75rem;
+  }
+
   .card-list {
     @include flex(1);
     padding: 1rem;

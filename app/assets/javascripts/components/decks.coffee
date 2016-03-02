@@ -2,6 +2,7 @@ class Decks
   constructor: (props = {}) ->
     @selection = props.selection
     @collection = props.collection
+    @currentDeckId = m.prop("")
     @deck = props.deck
     @decks = m.prop([])
     @filter = m.prop("all")
@@ -14,6 +15,7 @@ class Decks
         m("h3", "Select a deck"),
         m("select", { onchange: @selectDeck },
           (@renderDeck(deck) for deck in @decks()),
+          m("option", { }, "----------------")
           m("option", { value: "new_deck"}, "Add a Deck")
         ),
         m("div", { class: "filters", onchange: @filterChanged },
@@ -21,6 +23,11 @@ class Decks
         )
       )
       m.component(App.Components.Deck, { deck: @deck, selection: @selection, filter: @filter, collection: @collection })
+      m("a", {
+        class: "delete-link"
+        href: "#"
+        onclick: => @deleteDeck(@currentDeckId())
+        }, "delete this deck")
     )
 
   addNewDeck: =>
@@ -72,6 +79,7 @@ class Decks
 
   selectDeck: (e) =>
     id = e.target.options[e.target.selectedIndex].value
+    @currentDeckId(id)
     if id == "new_deck" 
       @addNewDeck()
     else
@@ -85,6 +93,12 @@ class Decks
     if id
       m.request({ method: "GET", url: "/deck_lists/#{id}" })
         .then (cards) => @deck(new App.Models.Collection(cards))
+    else
+      @deck(new App.Models.Collection)
+
+  deleteDeck: (id) ->
+    if id
+      m.request({ method: "DELETE", url: "/deck_lists/#{id}" })
     else
       @deck(new App.Models.Collection)
 

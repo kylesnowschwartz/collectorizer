@@ -29,6 +29,9 @@ class DeckListsController < ApplicationController
 
     RemoveDeckList.new(decklist).call
 
-    redirect_to :index
+    respond_to do |format|
+      format.html
+      format.json { render json: current_user.deck_lists }
+    end
   end
 end
