@@ -31,24 +31,9 @@ class Selection
       m("input", { type: "number", min: 0, onchange: m.withAttr("value", @changeQuantity), value: owned }),
       m("p", { class: "needed" }, "You need #{required - owned} more for this deck") if required > owned,
       m("p", { class: "needed" }, "You need #{required} for this deck") unless required > owned,
-      m("a", { class: "add-to-deck" href: "#" onclick: => @removeFromDeck(@selection()) }, "delete this deck")
+      m("a", { class: "add-to-deck", href: "#", onclick: => @removeFromDeck(@selection()) }, "remove card from deck")
     )
 
-  removeFromDeck: (e) =>
-    e.preventDefault()
-    m.request
-      method: "POST"
-      url: "/deck_lists"
-      data:
-        title: @deckTitle()
-        list: @deckList()
-    .then (cards) =>
-      @deck(new App.Models.Collection(cards))
-      @deckTitle("")
-      @deckList("")
-      @dialog(false)
-
-  addToDeck
 
   renderIcons: (text) ->
     (text || "")
