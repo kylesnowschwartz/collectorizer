@@ -34,7 +34,6 @@ class Selection
       m("a", { class: "add-to-deck", href: "#", onclick: => @removeFromDeck(@selection()) }, "remove card from deck")
     )
 
-
   renderIcons: (text) ->
     (text || "")
       .replace /{T}/g, "{tap}"
