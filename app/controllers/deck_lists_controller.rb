@@ -14,9 +14,14 @@ class DeckListsController < ApplicationController
   end
 
   def create
-    CreateDeckList.new(params[:title], current_user).call
+    new_deck = CreateDeckList.new(params[:title], current_user).call
 
-    redirect_to :show
+    ParseDeckList.new(params[:list], new_deck).call
+
+    respond_to do |format|
+      format.html
+      format.json { render json: DeckList.find(new_deck.id).card_requirements }
+    end
   end
 
   def destroy
@@ -24,6 +29,9 @@ class DeckListsController < ApplicationController
 
     RemoveDeckList.new(decklist).call
 
-    redirect_to :index
+    respond_to do |format|
+      format.html
+      format.json { render json: current_user.deck_lists }
+    end
   end
 end
