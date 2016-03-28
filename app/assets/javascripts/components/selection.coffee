@@ -31,6 +31,7 @@ class Selection
       m("input", { type: "number", min: 0, onchange: m.withAttr("value", @changeQuantity), value: owned }),
       m("p", { class: "needed" }, "You need #{required - owned} more for this deck") if required > owned,
       m("p", { class: "needed" }, "You need #{required} for this deck") unless required > owned,
+      m("a", { class: "add-to-deck", href: "#", onclick: => @removeFromDeck(@selection()) }, "remove card from deck")
     )
 
   renderIcons: (text) ->
@@ -67,7 +68,7 @@ class Selection
 
   cardDetails: (id) ->
     return @_cache[id] if @_cache[id]
-    m.request({ method: "GET", url: "https://api.deckbrew.com/mtg/cards/?multiverseid=#{id}" })
+    m.request({ method: "GET", url: "https://api.deckbrew.com/mtg/cards?multiverseid=#{id}" })
       .then (data) =>
         m.startComputation()
         @_cache[id] = data[0] if data.length
