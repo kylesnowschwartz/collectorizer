@@ -33,7 +33,6 @@ gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
 # got a error with farraday, a gem used in the mtg_sdk, was able to fix by adding gem 'multi_xml' here, 
 # seems to be missing from mtg_sdk.gemspec when I install via bundle
-gem 'multi_xml'
 gem 'mtg_sdk'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
