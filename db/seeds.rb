@@ -4,7 +4,7 @@ require 'csv'
 user = User.create!(email: "kyle.snowschwartz@gmail.com", password: "password")
 
 CSV.foreach("./db/current_have_list.csv") do |row|
-  p row[1]
+  # p row[1]
   AddCardToCollection.new(row[1], user).call
 end
 

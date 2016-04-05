@@ -31,7 +31,7 @@ class Selection
       m("input", { type: "number", min: 0, onchange: m.withAttr("value", @changeQuantity), value: owned }),
       m("p", { class: "needed" }, "You need #{required - owned} more for this deck") if required > owned,
       m("p", { class: "needed" }, "You need #{required} for this deck") unless required > owned,
-      m("a", { class: "add-to-deck", href: "#", onclick: => @removeFromDeck(@selection()) }, "remove card from deck")
+      m("a", { class: "remove-from-deck", href: "#", onclick: => @removeFromDeck(@selection()) }, "remove card from deck")
     )
 
   renderIcons: (text) ->
