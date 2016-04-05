@@ -15,14 +15,10 @@ class AddCardToCollection
   private
 
   def fetch_multiverse_and_normalize_name
-    file = File.read("db/lookup.json")
-    card_hash = JSON.parse(file)
+    card = MTG::Card.where(name: "\"#{@card_name}\"").all.find { |card| card.multiverse_id.present? }
 
-    sanitized_name = ActiveSupport::Inflector.transliterate(@card_name).downcase.gsub(/[^a-z0-9\s]/i, '')
-
-    card = card_hash[sanitized_name]
-    @card_name = card["name"]
-    @multiverse = card["multiverse_id"]
+    @card_name = card.name
+    @multiverse = card.multiverse_id
   end
 
   def update_decklists
