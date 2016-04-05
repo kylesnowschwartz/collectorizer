@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 5af7d96294be6922d954c9dcc3ccc5e743c44ec2
+  revision: d30aa4c44fe004821be49d3427b56973f95c4984
   specs:
     active_model_serializers (0.10.0.rc4)
       actionpack (>= 4.0)
@@ -116,7 +116,7 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    mtg_sdk (1.1.1)
+    mtg_sdk (2.0.0)
       faraday
       faraday_middleware
       json

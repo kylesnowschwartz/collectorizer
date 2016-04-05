@@ -19,7 +19,7 @@ class AddCardRequirementToDeckList
   private
 
   def fetch_multiverse_and_normalize_name
-    card = MTG::Card.where(name: @card_name).all.find { |card| card.multiverse_id.present? }
+    card = MTG::Card.where(name: "\"#{@card_name}\"").all.find { |card| card.multiverse_id.present? }
 
     @card_name = card.name
     @multiverse = card.multiverse_id
